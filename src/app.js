@@ -12,6 +12,8 @@ Ejemplo:
 const usuariosRoutes = require('./routes/usuarioRoutes.js')
 */
 
+const airesRoutes = require('./routes/aireAcondicionadoRoutes.js')
+
 
 // Asociaciones entre modelos
 /* 
@@ -32,6 +34,7 @@ app.use(express.urlencoded({ extended: false }))
 // Exponer las rutas
 // Ejemplo
 // app.use('/api/usuarios', usuariosRoutes)
+app.use('/api/aires', airesRoutes)
 
 app.use((req, res, next) => {
     res.status(404).send('Ruta no encontrada')
