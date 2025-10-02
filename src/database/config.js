@@ -1,6 +1,6 @@
 const config = {
     development: {
-        username:'root',
+        username:'',
         password:'',
         database:'isoterm',
         host:'localhost',

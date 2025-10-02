@@ -2,10 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 
 // Importar los modelos
-/*
-Ejemplo:
-const User = require('./model/user.model.js')
-*/
+
+const User = require('./model/usuario.model.js')
 
 // Importar las rutas
 /*
