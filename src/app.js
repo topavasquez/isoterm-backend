@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 // Importar los modelos
 
 const User = require('./model/usuario.model.js')
+const AireAcondicionado = require('./model/aireAcondicionado.model.js')
 
 // Importar las rutas
 /*
