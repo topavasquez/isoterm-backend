@@ -28,8 +28,35 @@ const getAireAcondicionadoPorId = async (req, res) => {
     }
 }
 
+const crearAireAcondicionado = async (req, res) => {
+    try {
+        const nuevoAire = await AireAcondicionado.create(req.body);
+        res.status(201).json(nuevoAire);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al crear el aire acondicionado', details: error.message });
+    }
+}
+
+const eliminarAireAcondicionadoById = async (req, res) => {
+    try {
+        const aireEliminado = await AireAcondicionado.destroy({
+            where: { id_aire_acondicionado: req.params.id }
+        });
+
+        if (aireEliminado) {
+            res.status(200).json({ message: 'Aire acondicionado eliminado correctamente' });
+        } else {
+            res.status(404).json({ message: 'No se encontró Aire Acondicionado con ese ID' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Error al eliminar el aire acondicionado', details: error.message });
+    }
+}
+
 module.exports = {
     // Agregar las funciones del controlador aquí
     getTodosAiresAcondicionados,
-    getAireAcondicionadoPorId
+    getAireAcondicionadoPorId,
+    crearAireAcondicionado,
+    eliminarAireAcondicionadoById
 }
