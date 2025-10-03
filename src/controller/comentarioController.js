@@ -53,6 +53,38 @@ const obtenerComentario = async (req, res) => {
   }
 };
 
+// Obtener comentarios por ID del aire acondicionado
+const obtenerComentariosPorAire = async (req, res) => {
+  try {
+    const idAire = parseInt(req.params.id);
+
+    const comentarios = await Comentario.findAll({
+      where: { id_aire_acondicionado: idAire },
+      include: [
+        {
+          model: Usuario,
+          attributes: ["id_usuario", "nombre", "correo"],
+          as: "usuario",
+        },
+        {
+          model: AireAcondicionado,
+          attributes: ["id_aire_acondicionado", "modelo"],
+          as: "aire",
+        },
+      ],
+    });
+
+    if (comentarios.length === 0) {
+      return res.status(404).json({ error: "No se encontraron comentarios para este aire acondicionado" });
+    }
+
+    res.json(comentarios);
+  } catch (error) {
+    console.error("Error al obtener comentarios:", error);
+    res.status(500).json({ error: "Error al obtener comentarios" });
+  }
+};
+
 // Crear un nuevo comentario
 const crearComentario = async (req, res) => {
   const { id_usuario, id_aire_acondicionado, texto } = req.body;
@@ -109,5 +141,6 @@ module.exports = {
   obtenerComentario,
   crearComentario,
   actualizarComentario,
+  obtenerComentariosPorAire,
   eliminarComentario,
 };

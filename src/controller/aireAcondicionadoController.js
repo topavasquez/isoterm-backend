@@ -30,6 +30,7 @@ const getAireAcondicionadoPorId = async (req, res) => {
 
 const crearAireAcondicionado = async (req, res) => {
     try {
+        console.log(req.body);
         const nuevoAire = await AireAcondicionado.create(req.body);
         res.status(201).json(nuevoAire);
     } catch (error) {
@@ -88,6 +89,21 @@ const actualizarStockAireAcondicionado = async (req, res) => {
         res.status(500).json({ error: "Error al actualizar el stock", details: error.message });
     }
 }
+const actualizarAireAcondicionadoById = async (req, res) => {
+    try {
+        const aireActualizado = await AireAcondicionado.update(req.body, {
+            where: { id_aire_acondicionado: req.params.id }
+        });
+
+        if (aireActualizado[0] > 0) {
+            res.status(200).json({ message: 'Aire acondicionado actualizado correctamente' });
+        } else {
+            res.status(404).json({ message: 'No se encontró Aire Acondicionado con ese ID' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'Error al actualizar el aire acondicionado', details: error.message });
+    }
+}
 
 module.exports = {
     // Agregar las funciones del controlador aquí
@@ -96,5 +112,6 @@ module.exports = {
     crearAireAcondicionado,
     eliminarAireAcondicionadoById,
     actualizarEstadoAireAcondicionado,
-    actualizarStockAireAcondicionado
+    actualizarStockAireAcondicionado,
+    actualizarAireAcondicionadoById
 }
