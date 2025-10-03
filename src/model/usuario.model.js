@@ -1,40 +1,48 @@
-const Sequelize = require('sequelize')
-const sequelize = require('../database/database.js')
+const Sequelize = require("sequelize");
+const sequelize = require("../database/database.js");
 
-const Usuario = sequelize.define('usuarios', {
+const Usuario = sequelize.define(
+  "usuarios",
+  {
     id_usuario: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
     },
     nombre: {
-        type: Sequelize.STRING,
-        allowNull: false
+      type: Sequelize.STRING,
+      allowNull: false,
     },
     apellido: {
-        type: Sequelize.STRING,
-        allowNull: false
+      type: Sequelize.STRING,
+      allowNull: false,
     },
     correo: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true,
     },
     password: {
-        type: Sequelize.STRING,
-        allowNull: true
+      type: Sequelize.STRING,
+      allowNull: true,
     },
     telefono: {
-        type: Sequelize.STRING,
-        allowNull: false
+      type: Sequelize.STRING,
+      allowNull: false,
     },
     direccion: {
-        type: Sequelize.STRING,
-        allowNull: true
+      type: Sequelize.STRING,
+      allowNull: true,
     },
-}, {
-    timestamps: false
-})
+    rol: {
+      type: Sequelize.ENUM("admin", "vendedor", "cliente"),
+      allowNull: false,
+    },
+  },
+  {
+    timestamps: false,
+  }
+);
 
-module.exports = Usuario
+module.exports = Usuario;
