@@ -4,6 +4,7 @@ const comentarioController = require("../controller/comentarioController");
 
 // Rutas para comentarios
 router.get("/", comentarioController.obtenerComentarios);
+router.get("/aire/:id", comentarioController.obtenerComentariosPorAire);
 router.get("/:id", comentarioController.obtenerComentario);
 router.post("/", comentarioController.crearComentario);
 router.put("/:id", comentarioController.actualizarComentario);
