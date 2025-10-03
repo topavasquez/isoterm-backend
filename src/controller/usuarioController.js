@@ -79,10 +79,33 @@ const eliminarUsuario = async (req, res) => {
   }
 };
 
+const login = async (req, res) => {
+    const { correo, password } = req.body;
+
+    try {
+        const usuario = await Usuario.findOne({ where: { correo } });
+
+        if (!usuario) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        if (usuario.password !== password) {
+            return res.status(401).json({ message: 'Contraseña incorrecta' });
+        }
+
+        res.status(200).json({ message: 'Inicio de sesión exitoso', usuario });
+    } catch (error) {
+        res.status(500).json({ error: 'Error al iniciar sesión' });
+    }
+}
+
 module.exports = {
-  obtenerUsuarios,
-  obtenerUsuario,
-  crearUsuario,
-  actualizarUsuario,
-  eliminarUsuario,
+    // Agregar las funciones del controlador aquí
+    // obtenerUsuario
+    login
+    obtenerUsuarios,
+    obtenerUsuario,
+    crearUsuario,
+    actualizarUsuario,
+    eliminarUsuario,
 };
