@@ -1,18 +1,23 @@
-const { Router } = require("express")
+const { Router } = require("express");
 const {
-    // Agregar funciones exportadas del controlador aquí
-    // obtenerUsuario,
-    login
-} = require('../controller/usuarioController.js')
+  // Agregar funciones exportadas del controlador aquí
+  // obtenerUsuario,
+  login
+  obtenerUsuarios,
+  obtenerUsuario,
+  crearUsuario,
+  actualizarUsuario,
+  eliminarUsuario,
+} = require("../controller/usuarioController.js");
 
-const router = Router()
 
-// Crear el router
+const router = Router();
 
-/*
-Ejemplo:
-router.get('/:id', obtenerUsuario)
-*/
+router.get("/", obtenerUsuarios);
+router.get("/:id", obtenerUsuario);
+router.post("/", crearUsuario);
+router.put("/:id", actualizarUsuario);
+router.delete("/:id", eliminarUsuario);
 router.post('/login', login)
 
 
