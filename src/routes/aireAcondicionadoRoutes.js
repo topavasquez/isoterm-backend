@@ -3,7 +3,8 @@ const {
     getTodosAiresAcondicionados, 
     getAireAcondicionadoPorId,
     crearAireAcondicionado,
-    eliminarAireAcondicionadoById
+    eliminarAireAcondicionadoById,
+    actualizarAireAcondicionadoById
 } = require('../controller/aireAcondicionadoController.js')
 
 const router = Router()
@@ -14,7 +15,8 @@ const router = Router()
 
 router.get('/', getTodosAiresAcondicionados)
 router.get('/:id', getAireAcondicionadoPorId)
-router.post('/crear-aire', crearAireAcondicionado)
+router.post('/', crearAireAcondicionado)
 router.delete('/:id', eliminarAireAcondicionadoById)
+router.put('/:id', actualizarAireAcondicionadoById)
 
 module.exports = router
