@@ -102,7 +102,7 @@ const login = async (req, res) => {
 module.exports = {
     // Agregar las funciones del controlador aquí
     // obtenerUsuario
-    login
+    login,
     obtenerUsuarios,
     obtenerUsuario,
     crearUsuario,

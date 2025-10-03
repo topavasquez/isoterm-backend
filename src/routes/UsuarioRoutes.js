@@ -2,7 +2,7 @@ const { Router } = require("express");
 const {
   // Agregar funciones exportadas del controlador aquí
   // obtenerUsuario,
-  login
+  login,
   obtenerUsuarios,
   obtenerUsuario,
   crearUsuario,
