@@ -1,7 +1,9 @@
 const { Router } = require("express")
 const { 
     getTodosAiresAcondicionados, 
-    getAireAcondicionadoPorId 
+    getAireAcondicionadoPorId,
+    crearAireAcondicionado,
+    eliminarAireAcondicionadoById
 } = require('../controller/aireAcondicionadoController.js')
 
 const router = Router()
@@ -12,5 +14,7 @@ const router = Router()
 
 router.get('/', getTodosAiresAcondicionados)
 router.get('/:id', getAireAcondicionadoPorId)
+router.post('/crear-aire', crearAireAcondicionado)
+router.delete('/:id', eliminarAireAcondicionadoById)
 
 module.exports = router

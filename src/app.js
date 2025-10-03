@@ -21,7 +21,7 @@ const usuariosRoutes = require("./routes/UsuarioRoutes.js");
 // Asociaciones entre modelos
 /* 
 Ejemplo: 
-User.belongsToMany(Rol, { as:'rolUser', through: UserRol, foreignKey:'id_usuario' })
+User.belongsToMany(Rol, { as:'rolUser', through: UserRol, foreignKey:'id_usuario' })    
 Rol.belongsToMany(User, { as:'userRol', through: UserRol, foreignKey:'id_rol' })
 */
 
