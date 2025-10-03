@@ -8,6 +8,7 @@ const {
   crearUsuario,
   actualizarUsuario,
   eliminarUsuario,
+  crearCliente
 } = require("../controller/usuarioController.js");
 
 
@@ -19,6 +20,8 @@ router.post("/", crearUsuario);
 router.put("/:id", actualizarUsuario);
 router.delete("/:id", eliminarUsuario);
 router.post('/login', login)
+
+router.post('/cliente', crearCliente)
 
 
 module.exports = router

@@ -119,10 +119,28 @@ const actualizarComentario = async (req, res) => {
   }
 };
 
+//Eliminar Comentario
+const eliminarComentario = async (req, res) => {
+  try {
+    const comentario = await Comentario.findByPk(req.params.id);
+    if (!comentario) {
+      return res.status(404).json({ error: "Comentario no encontrado" });
+    }
+
+    await comentario.destroy();
+    return res.status(204).send();
+  } catch (error) {
+    console.error("Error al eliminar comentario:", error);
+    res.status(500).json({ error: "Error al eliminar comentario" });
+  }
+};
+
+
 module.exports = {
   obtenerComentarios,
   obtenerComentario,
   crearComentario,
   actualizarComentario,
   obtenerComentariosPorAire,
+  eliminarComentario,
 };
