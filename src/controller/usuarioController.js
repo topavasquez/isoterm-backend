@@ -80,32 +80,53 @@ const eliminarUsuario = async (req, res) => {
 };
 
 const login = async (req, res) => {
-    const { correo, password } = req.body;
+  const { correo, password } = req.body;
 
-    try {
-        const usuario = await Usuario.findOne({ where: { correo } });
+  try {
+    const usuario = await Usuario.findOne({ where: { correo } });
 
-        if (!usuario) {
-            return res.status(404).json({ message: 'Usuario no encontrado' });
-        }
-
-        if (usuario.password !== password) {
-            return res.status(401).json({ message: 'Contraseña incorrecta' });
-        }
-
-        res.status(200).json({ message: 'Inicio de sesión exitoso', usuario });
-    } catch (error) {
-        res.status(500).json({ error: 'Error al iniciar sesión' });
+    if (!usuario) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
     }
+
+    if (usuario.password !== password) {
+      return res.status(401).json({ message: 'Contraseña incorrecta' });
+    }
+
+    res.status(200).json({ message: 'Inicio de sesión exitoso', usuario });
+  } catch (error) {
+    res.status(500).json({ error: 'Error al iniciar sesión' });
+  }
+}
+
+const crearCliente = async (req, res) => {
+  const { nombre, apellido, correo, password, telefono, direccion } = req.body;
+
+  try {
+    const nuevoCliente = await Usuario.create({
+      nombre,
+      apellido,
+      correo,
+      password,
+      telefono,
+      direccion,
+      rol: 'cliente',
+    });
+
+    res.status(201).json(nuevoCliente);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al crear cliente' });
+  }
 }
 
 module.exports = {
-    // Agregar las funciones del controlador aquí
-    // obtenerUsuario
-    login,
-    obtenerUsuarios,
-    obtenerUsuario,
-    crearUsuario,
-    actualizarUsuario,
-    eliminarUsuario,
+  // Agregar las funciones del controlador aquí
+  // obtenerUsuario
+  login,
+  obtenerUsuarios,
+  obtenerUsuario,
+  crearUsuario,
+  actualizarUsuario,
+  eliminarUsuario,
+  crearCliente
 };
