@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 // Importar los modelos
 
@@ -14,7 +15,6 @@ const usuariosRoutes = require('./routes/usuarioRoutes.js')
 
 const airesRoutes = require('./routes/aireAcondicionadoRoutes.js')
 
-
 // Asociaciones entre modelos
 /* 
 Ejemplo: 
@@ -27,6 +27,7 @@ Rol.belongsToMany(User, { as:'userRol', through: UserRol, foreignKey:'id_rol' })
 
 const app = express()
 
+app.use(cors())
 app.use(bodyParser.json());
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
