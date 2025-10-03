@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 // Importar los modelos
 
@@ -18,7 +19,7 @@ const airesRoutes = require('./routes/aireAcondicionadoRoutes.js')
 // Asociaciones entre modelos
 /* 
 Ejemplo: 
-User.belongsToMany(Rol, { as:'rolUser', through: UserRol, foreignKey:'id_usuario' })
+User.belongsToMany(Rol, { as:'rolUser', through: UserRol, foreignKey:'id_usuario' })    
 Rol.belongsToMany(User, { as:'userRol', through: UserRol, foreignKey:'id_rol' })
 */
 
@@ -27,6 +28,7 @@ Rol.belongsToMany(User, { as:'userRol', through: UserRol, foreignKey:'id_rol' })
 
 const app = express()
 
+app.use(cors())
 app.use(bodyParser.json());
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))

@@ -1,7 +1,7 @@
 const config = {
     development: {
-        username:'',
-        password:'',
+        username:'postgres',
+        password:'1234',
         database:'isoterm',
         host:'localhost',
         dialect:'postgres'
