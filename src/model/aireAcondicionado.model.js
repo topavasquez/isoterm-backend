@@ -42,6 +42,10 @@ const AireAcondicionado = sequelize.define(
       type: Sequelize.STRING,
       allowNull: true,
     },
+     disponible: { 
+      type: Sequelize.BOOLEAN, 
+      allowNull: false, 
+      defaultValue: true }
   },
   {
     timestamps: false,

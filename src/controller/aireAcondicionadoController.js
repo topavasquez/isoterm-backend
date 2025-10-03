@@ -54,6 +54,41 @@ const eliminarAireAcondicionadoById = async (req, res) => {
     }
 }
 
+const actualizarEstadoAireAcondicionado = async (req, res) => {
+    try {
+        const { disponible } = req.body; // se espera true o false
+
+        const aire = await AireAcondicionado.findByPk(req.params.id);
+        if (!aire) {
+            return res.status(404).json({ message: "Aire acondicionado no encontrado" });
+        }
+
+        aire.disponible = disponible;
+        await aire.save();
+
+        res.status(200).json({ message: "Estado actualizado correctamente", aire });
+    } catch (error) {
+        res.status(500).json({ error: "Error al actualizar el estado", details: error.message });
+    }
+}
+
+const actualizarStockAireAcondicionado = async (req, res) => {
+    try {
+        const { stock } = req.body; // nuevo valor de stock
+
+        const aire = await AireAcondicionado.findByPk(req.params.id);
+        if (!aire) {
+            return res.status(404).json({ message: "Aire acondicionado no encontrado" });
+        }
+
+        aire.stock = stock;
+        await aire.save();
+
+        res.status(200).json({ message: "Stock actualizado correctamente", aire });
+    } catch (error) {
+        res.status(500).json({ error: "Error al actualizar el stock", details: error.message });
+    }
+}
 const actualizarAireAcondicionadoById = async (req, res) => {
     try {
         const aireActualizado = await AireAcondicionado.update(req.body, {
@@ -76,5 +111,7 @@ module.exports = {
     getAireAcondicionadoPorId,
     crearAireAcondicionado,
     eliminarAireAcondicionadoById,
+    actualizarEstadoAireAcondicionado,
+    actualizarStockAireAcondicionado,
     actualizarAireAcondicionadoById
 }
