@@ -1,11 +1,11 @@
 const config = {
-    development: {
-        username:'',
-        password:'',
-        database:'isoterm',
-        host:'localhost',
-        dialect:'postgres'
-    }
-}
+  development: {
+    username: "postgres",
+    password: "1234",
+    database: "isoterm",
+    host: "localhost",
+    dialect: "postgres",
+  },
+};
 
-module.exports = config
+module.exports = config;
