@@ -23,5 +23,4 @@ router.post('/login', login)
 
 router.post('/cliente', crearCliente)
 
-
 module.exports = router

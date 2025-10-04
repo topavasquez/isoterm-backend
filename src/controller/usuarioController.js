@@ -61,6 +61,7 @@ const actualizarUsuario = async (req, res) => {
     });
     res.status(200).json(usuario);
   } catch (error) {
+    console.error("Error en actualizarUsuario:", error);
     res.status(500).json({ error: "Error al actualizar usuario" });
   }
 };
@@ -118,6 +119,7 @@ const crearCliente = async (req, res) => {
     res.status(500).json({ error: 'Error al crear cliente' });
   }
 }
+
 
 module.exports = {
   // Agregar las funciones del controlador aquí
