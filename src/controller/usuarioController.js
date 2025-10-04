@@ -125,21 +125,22 @@ const actualizarCorreo = async (req, res) => {
     const { id } = req.params;
     const { correo } = req.body;
 
-    // Buscar el usuario por id_usuario
-    const usuario = await Usuario.findOne({ where: { id_usuario: id } });
-
-    if (!usuario) {
-      return res.status(404).json({ error: "Usuario no encontrado" });
+    if (!correo) {
+      return res.status(400).json({ error: 'Debe enviar el nuevo correo' });
     }
 
-    // Actualizar solo el correo
+    const usuario = await Usuario.findByPk(id);
+    if (!usuario) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+
     usuario.correo = correo;
     await usuario.save();
 
-    res.status(200).json({ mensaje: "Correo actualizado correctamente", usuario });
+    res.json({ mensaje: 'Correo actualizado correctamente', usuario });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Error al actualizar correo" });
+    console.error('Error al actualizar correo:', error);
+    res.status(500).json({ error: 'Error al actualizar correo' });
   }
 }
 

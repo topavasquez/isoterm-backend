@@ -21,7 +21,7 @@ router.post("/", crearUsuario);
 router.put("/:id", actualizarUsuario);
 router.delete("/:id", eliminarUsuario);
 router.post('/login', login)
-router.patch('/usuarios/:id/correo', actualizarCorreo);
+router.patch('/:id/correo', actualizarCorreo);
 
 
 router.post('/cliente', crearCliente)
