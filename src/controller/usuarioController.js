@@ -120,6 +120,29 @@ const crearCliente = async (req, res) => {
   }
 }
 
+const actualizarCorreo = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { correo } = req.body;
+
+    // Buscar el usuario por id_usuario
+    const usuario = await Usuario.findOne({ where: { id_usuario: id } });
+
+    if (!usuario) {
+      return res.status(404).json({ error: "Usuario no encontrado" });
+    }
+
+    // Actualizar solo el correo
+    usuario.correo = correo;
+    await usuario.save();
+
+    res.status(200).json({ mensaje: "Correo actualizado correctamente", usuario });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al actualizar correo" });
+  }
+}
+
 
 module.exports = {
   // Agregar las funciones del controlador aquí
@@ -130,5 +153,6 @@ module.exports = {
   crearUsuario,
   actualizarUsuario,
   eliminarUsuario,
-  crearCliente
+  crearCliente,
+  actualizarCorreo
 };
