@@ -10,6 +10,7 @@ const obtenerUsuarios = async (req, res) => {
 };
 
 const obtenerUsuario = async (req, res) => {
+  console.log("ID recibido:", req.params.id);
   try {
     const usuario = await Usuario.findByPk(req.params.id);
     if (!usuario) {
@@ -144,6 +145,15 @@ const actualizarCorreo = async (req, res) => {
   }
 }
 
+const obtenerVendedores = async (req, res) => {
+  try {
+    const vendedores = await Usuario.findAll({ where: { rol: 'vendedor' } });
+    res.status(200).json(vendedores);
+  } catch (error) {
+    res.status(500).json({ error: 'Error al obtener vendedores' });
+  }
+}
+
 
 module.exports = {
   // Agregar las funciones del controlador aquí
@@ -155,5 +165,6 @@ module.exports = {
   actualizarUsuario,
   eliminarUsuario,
   crearCliente,
-  actualizarCorreo
+  actualizarCorreo,
+  obtenerVendedores
 };
